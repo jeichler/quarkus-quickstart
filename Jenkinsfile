@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        dir 'openshift-quickstart'
+        dir 'quarkus-quickstart'
         sh "./mvnw clean package -Dquarkus.container-image.build=true"
       }
     }
