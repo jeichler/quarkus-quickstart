@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 pipeline {
   agent {
       label 'maven'
@@ -5,8 +7,17 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        dir 'quarkus-quickstart'
-        sh "./mvnw clean package -Dquarkus.container-image.build=true"
+        sh "cd ${WORKSPACE}/quarkus-quickstart && ./mvnw clean package -Popenshift"
+      }
+    }
+    stage('Test') {
+      steps {
+        echo 'have some meaningful tests'
+      }
+    }
+    stage('Your next step') {
+      steps {
+        echo 'usually we do a bit more in pipelines, right?'
       }
     }
   }
